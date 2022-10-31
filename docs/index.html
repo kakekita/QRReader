@@ -88,7 +88,7 @@
     });
 
     function tick() {
-      loadingMessage.innerText = "⌛ Loading video..."
+      loadingMessage.innerText = "読み込み中..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
