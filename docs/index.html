@@ -53,13 +53,12 @@
   </style>
 </head>
 <body>
-  <h1>jsQR Demo</h1>
-  <a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
-  <p>Pure JavaScript QR code decoding library.</p>
-  <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+  <h1>-アプリ名-</h1>
+  <p>QRコード読み取り</p>
+  <div id="loadingMessage">カメラへのアクセスを許可してください。</div>
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
-    <div id="outputMessage">No QR code detected.</div>
+    <div id="outputMessage">QRコードをかざしてください。</div>
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
   <script>
@@ -109,7 +108,7 @@
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
+          outputData.innerText = code.data;//ここが取得した情報
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
