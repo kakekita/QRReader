@@ -4,6 +4,36 @@
 <head>
 </head>
 <body>
-
+<script src="jsQR.js"></script>
+<script>
+// カメラ設定
+const constraints = {
+audio: false,
+video: {
+width: canvas.width,
+height: canvas.height,
+facingMode: "environment"
+}
+};
+const drawLine = (ctx, pos, options={color:"blue", size:5})=>{
+// 線のスタイル設定
+ctx.strokeStyle = options.color;
+ctx.lineWidth   = options.size;
+// 線を描く
+ctx.beginPath();
+ctx.moveTo(pos.topLeftCorner.x, pos.topLeftCorner.y);
+ctx.lineTo(pos.topRightCorner.x, pos.topRightCorner.y);
+ctx.lineTo(pos.bottomRightCorner.x, pos.bottomRightCorner.y);
+ctx.lineTo(pos.bottomLeftCorner.x, pos.bottomLeftCorner.y);
+ctx.lineTo(pos.topLeftCorner.x, pos.topLeftCorner.y);
+ctx.stroke();
+}
+const checkPicture = ()=>{
+// 映像をCanvasへ
+ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+// QRコード読取
+const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+const co
+</script>
 </body>
 </html>
