@@ -3,9 +3,10 @@
 <head>
 </head>
 <body>
+<canvas id="camera" width="800" height="600"></canvas>
 <script src="jsQR.js"></script>
 <script>
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector("#camera");
 const ctx = canvas.getContetext("2d");
 // カメラ設定
 const constraints = {
