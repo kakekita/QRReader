@@ -6,7 +6,7 @@
     <body>
         <input type="file" id="selfile"><br>
         <script>
-            function setup(list) {
+            async function setup(list) {
                 var years = prompt("入学年を入力してください","");
                 /** 重複チェック用配列 */
                 var randoms = {};
@@ -33,6 +33,10 @@
                     link.download = years+'.json';
                     link.click();
                     URL.revokeObjectURL(url);
+                const sleep = ms => new Promise(res => setTimeout(res, ms))
+                for(var i = 5; i < 1;i--) {
+                    await sleep(1000);
+                }
                 window.location.reload(true);
                 
             }
