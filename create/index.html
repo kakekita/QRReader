@@ -34,7 +34,9 @@
                     link.click();
                     URL.revokeObjectURL(url);
                 const sleep = ms => new Promise(res => setTimeout(res, ms))
-                for(var i = 5; i < 1;i--) {
+                var cnt = [5,4,3,2,1];
+                for(var i = 0; i < 5;i++) {
+                    document.title = String(cnt[i]);
                     await sleep(1000);
                 }
                 window.location.reload(true);
