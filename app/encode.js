@@ -3,7 +3,6 @@ var code = null;
 
 
 
-$.getJSON("code.json")
-    .done(function (json) {
+$.getJSON("code.json").done(function (json) {
         code = json;
 });
