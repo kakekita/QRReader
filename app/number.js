@@ -4,8 +4,8 @@ var code = null;
 function encode(n) {
     var num = String(n);
     var rand = Math.floor( Math.random() * alp.length);
+    alert(code[alp[rand]]);
     var j = code[alp[rand]].split("");
-    alert(j);
     var sp = num.split("");
     var str = "";
     for(var i in sp) {
