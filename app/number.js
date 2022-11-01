@@ -11,7 +11,7 @@ function encode(n) {
     for(var i in sp) {
         str += j[Number(sp[i])];
     }
-    return str;
+    return alp[rand]+str;
 }
 
 function decode(s) {
@@ -19,7 +19,7 @@ function decode(s) {
     var c = s.substr(1).split("");
     alert(c);
     var str = "";
-    var csp = code[a].split("");
+    var csp = code[a];
     for(var i in c) {
         str += String(csp.indexOf(c[i]));
     }
