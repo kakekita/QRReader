@@ -61,7 +61,11 @@
     <div id="outputMessage">QRコードをかざしてください。</div>
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
   </div>
+  <script src="number.js"></script>
   <script>
+    //====test====
+    encode(79727);
+    //====end=====
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
