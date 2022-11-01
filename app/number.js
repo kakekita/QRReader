@@ -1,8 +1,8 @@
 var alp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var code = null;
 
-function encode() {
-    var num = String(79297);
+function encode(n) {
+    var num = String(n);
     var rand = Math.floor( Math.random() * alp.length);
     var j = code[alp[rand]].split("");
     var sp = num.split("");
