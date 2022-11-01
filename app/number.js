@@ -1,8 +1,10 @@
 var alp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var code = null;
 
+function encode() {
+    
+}
 
-
-$.getJSON("code.json").done(function (json) {
-        code = json;
+$.getJSON("codes.json").done(function (json) {
+    code = json;
 });
