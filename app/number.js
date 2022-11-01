@@ -17,9 +17,10 @@ function encode(n) {
 function decode(s) {
     var a = s.substr(0,1);
     var c = s.substr(1,s.length-1);
+    alert(c);
     var str = "";
     var csp = code[a].split("");
-    for(var i in c.split()) {
+    for(var i in c.split("")) {
         str += String(csp.indexOf(c[i]));
     }
     return str;
