@@ -65,7 +65,10 @@
   <script src="./number.js"></script>
   <script>
     //====test====
-    alert(encode(12345));
+    var en = encode(12345);
+    alert(en);
+    var de = decode(en);
+    alert(de);
     //====end=====
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
