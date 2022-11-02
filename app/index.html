@@ -127,8 +127,14 @@
       requestAnimationFrame(tick);
     }
     
-    function getIndex(dir,str) {
-        
+    function getIndex(dict,str) {
+        var allkey = Object.keys(dict);
+        for(var i of allkey) {
+            if(String(dict[allkey[i]]) === String(str)) {
+                return true;
+            }
+        }
+        return false;
     }
   </script>
 </body>
