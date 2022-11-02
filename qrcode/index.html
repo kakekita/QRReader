@@ -55,7 +55,7 @@
                 console.log(str);
                 //$(function(){
                 console.log(k);
-                document.getElementById("qr").insertAdjacentHTML('beforeend','<span style="width: 192px;height: 180px">'+allkey[k]+'</span>');
+                document.getElementById("qr").insertAdjacentHTML('beforeend','<span style="width: 192px;height: 30px">'+allkey[k]+'</span>');
                 $('#qr').qrcode({text:encode(str),width: 128,height: 128});
                 var url = document.getElementById("qr").lastElementChild.toDataURL('image/png');
                 console.log(url);
