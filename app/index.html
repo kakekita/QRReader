@@ -71,8 +71,9 @@
     //alert(de);
     //====end=====
     var names = {};
+    var year = new Date().getFullYear();
     $.ajaxSetup({ async: false });
-    for (var i = 2020;i <= 2022;i++) {
+    for (var i = 2020;i <= year;i++) {
         $.getJSON("students/"+String(i)+".json").done(function (json) {
             names[String(i)] = json;
         });
