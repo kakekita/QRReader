@@ -4,8 +4,12 @@
         
     </head>
     <body>
+        <div id="qr"></div>
         <script>
-            
+            str = ""
+            $(function(){
+                $('#qr').qrcode(str);
+            });
         </script>
     </body>
 </html>
