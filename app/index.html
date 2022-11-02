@@ -78,6 +78,7 @@
             names[String(i)] = json;
         });
     }
+    console.log(names);
     $.ajaxSetup({ async: true });
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
@@ -145,6 +146,7 @@
     function getName(dicts,str) {
         var allkey = Object.keys(dicts);//名前
         var dict = dicts[String(str.substr(0,4))];
+        console.log(dict);
         for(var i of allkey) {
             if(String(dict[allkey[i]]) === String(str)) {
                 return allkey[i];
