@@ -5,25 +5,55 @@
         <title>QRコード作成</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js" integrity="sha512-5BqtYqlWfJemW5+v+TZUs22uigI8tXeVah5S/1Z6qBLVO7gakAOtkOzUtgq6dsIo5c0NJdmGPs0H9I+2OHUHVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            body {
+                /* 方眼紙模様に必須のスタイル */
+                background-image: linear-gradient(0deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px)),
+                        linear-gradient(90deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px));
+                background-size: 340px 200px;
+                background-repeat: repeat;
+                background-position: left top;
+
+                /* 以下任意のスタイル */
+                padding: 0px;
+                margin: 0
+            }
+            p {
+                font-size: 13px;
+            }
+        </style>
     </head>
     <body>
         <div id="qr"></div>
         <script src="../app/number.js"></script>
+        <script src="./zip.min.js"></script>
         <script>
             var names = null;
             var year = prompt("入学年を入力してください。",String(new Date().getFullYear()));
+            var zip = new Zlib.Zip();
             $.ajaxSetup({ async: false });
             $.getJSON("../app/students/"+year+".json").done(function (json) {
                 names = json;
             });
             $.ajaxSetup({ async: true });
-            var allkey = Object.key(names);
+            var allkey = Object.keys(names);
             for(var k in allkey) {
                 var str = String(names[allkey[k]]);
-                $(function(){
-                    $('#qr').qrcode({text:encode(str)});
-                });
+                console.log(str);
+                //$(function(){
+                console.log(k);
+                document.getElementById("qr").insertAdjacentHTML('beforeend','<canvas width="192" height="180">');
+                $('#qr').qrcode({text:encode(str),width: 128,height: 128});
+                var url = document.getElementById("qr").lastElementChild.toDataURL('image/png');
+                console.log(url);
+                document.getElementById("qr").insertAdjacentHTML('beforeend','<canvas width="20" height="180">');
+                if((k+1) % 3 == 0) {
+                    document.getElementById("qr").insertAdjacentHTML('beforeend','<p></p>');
+                }
+                //});
             }
+            window.print();
         </script>
     </body>
 </html>
