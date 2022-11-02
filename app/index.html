@@ -76,7 +76,7 @@
     $.ajaxSetup({ async: false });
     for (var i = 0;i < fileList.length;i++) {
         $.getJSON("students/"+fileList[i].name+".json").done(function (json) {
-            names[fileList[i].name] = json;
+            names[String(fileList[i].name)] = json;
         });
     }
     $.ajaxSetup({ async: true });
