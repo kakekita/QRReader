@@ -19,7 +19,8 @@
                         while(true){
                             var tmp = intRandom(min, max);
                             if(!(tmp in randoms)){
-                                randoms[list[i]] = years+String(tmp);
+                                //randoms[list[i]] = years+String(tmp);
+                                randoms[years+String(tmp)] = list[i];
                                 break;
                             }
                         }
