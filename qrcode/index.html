@@ -21,7 +21,7 @@
             for(var k in allkey) {
                 var str = String(names[allkey[k]]);
                 $(function(){
-                    $('#qr').qrcode(encode(str));
+                    $('#qr').qrcode({text:encode(str)});
                 });
             }
         </script>
