@@ -65,11 +65,12 @@
   <script src="./number.js"></script>
   <script>
     //====test====
-    var en = encode(Number(prompt("半角数字を入力してください。","")));
-    alert(en);
-    var de = decode(en);
-    alert(de);
+    //var en = encode(Number(prompt("半角数字を入力してください。","")));
+    //alert(en);
+    //var de = decode(en);
+    //alert(de);
     //====end=====
+    var names = null;
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
@@ -118,7 +119,7 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;//ここが取得した情報
           var numb = decode(code.data);
-          getIndex();
+          getIndex(names,String(numb));
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
