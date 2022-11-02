@@ -127,6 +127,7 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;//ここが取得した情報
           var numb = decode(code.data);
+          console.log(numb)
           var name = getName(names,String(numb));
           if(!(name)) {
             alert("未登録のユーザーです。");
