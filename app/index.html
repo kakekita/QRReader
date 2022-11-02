@@ -73,6 +73,7 @@
     var names = {};
     var folderRef = new Folder ("./students"); ←一覧を取得するフォルダを指定します
     var fileList = folderRef.getFiles();
+    alert(fileList.length);
     $.ajaxSetup({ async: false });
     for (var i in fileList) {
         alert(fileList[i].name);
