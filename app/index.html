@@ -71,9 +71,10 @@
     //alert(de);
     //====end=====
     var names = {};
+    alert("start");
     var folderRef = new Folder("/students/");
     var fileList = folderRef.getFiles();
-    alert(fileList.length);
+    alert(fileList);
     $.ajaxSetup({ async: false });
     for (var i in fileList) {
         alert(fileList[i].name);
