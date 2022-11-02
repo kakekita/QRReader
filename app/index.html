@@ -70,7 +70,16 @@
     //var de = decode(en);
     //alert(de);
     //====end=====
-    var names = null;
+    var names = {};
+    var folderRef = new Folder ("/students/"); ←一覧を取得するフォルダを指定します
+    var fileList = folderRef.getFiles();
+    $.ajaxSetup({ async: false });
+    for (var i = 0;i < fileList.length;i++) {
+        $.getJSON("students/"+fileList[i].name+".json").done(function (json) {
+            names[fileList[i].name] = json;
+        });
+    }
+    $.ajaxSetup({ async: true });
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
@@ -128,14 +137,15 @@
       requestAnimationFrame(tick);
     }
     
-    function getIndex(dict,str) {
-        var allkey = Object.keys(dict);
+    function getIndex(dicts,str) {
+        var allkey = Object.keys(dicts);
+        var dict = dicts[String(str.substr(0,4))];
         for(var i of allkey) {
             if(String(dict[allkey[i]]) === String(str)) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
   </script>
 </body>
