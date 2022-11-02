@@ -5,11 +5,22 @@
     </head>
     <body>
         <div id="qr"></div>
+        <script src="../app/number.js"></script>
         <script>
-            str = ""
-            $(function(){
-                $('#qr').qrcode(str);
+            var names = null;
+            var year = prompt("入学年を入力してください。",String(new Date().getFullYear()));
+            $.ajaxSetup({ async: false });
+            $.getJSON("../app/students/"+year+".json").done(function (json) {
+                names = json;
             });
+            $.ajaxSetup({ async: true });
+            var allkey = Object.key(names);
+            for(var k in allkey) {
+                str = String(names[allkey[k]]);
+                $(function(){
+                    $('#qr').qrcode(encode(str));
+                });
+            }
         </script>
     </body>
 </html>
