@@ -71,16 +71,10 @@
     //alert(de);
     //====end=====
     var names = {};
-    alert("start");
-    var folderRef = new Folder("/students/");
-    alert("1");
-    var fileList = folderRef.getFiles();
-    alert("2");
     $.ajaxSetup({ async: false });
-    for (var i in fileList) {
-        alert(fileList[i].name);
-        $.getJSON("students/"+fileList[i].name+".json").done(function (json) {
-            names[String(fileList[i].name)] = json;
+    for (var i = 2020;i <= 2022;i++) {
+        $.getJSON("students/"+String(i)+".json").done(function (json) {
+            names[String(i)] = json;
         });
     }
     $.ajaxSetup({ async: true });
