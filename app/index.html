@@ -128,7 +128,12 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;//ここが取得した情報
           var numb = decode(code.data);
-          getIndex(names,String(numb));
+          var name = getName(names,String(numb));
+          if(!(name)) {
+            alert("未登録のユーザーです。");
+          }else {
+            alert(name+"です。");
+          }
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
@@ -138,14 +143,14 @@
     }
     
     function getIndex(dicts,str) {
-        var allkey = Object.keys(dicts);
+        var allkey = Object.keys(dicts);//名前
         var dict = dicts[String(str.substr(0,4))];
         for(var i of allkey) {
             if(String(dict[allkey[i]]) === String(str)) {
-                return i;
+                return allkey[i];
             }
         }
-        return -1;
+        return false;
     }
   </script>
 </body>
