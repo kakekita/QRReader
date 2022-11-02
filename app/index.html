@@ -73,8 +73,9 @@
     var names = {};
     alert("start");
     var folderRef = new Folder("/students/");
+    alert("1");
     var fileList = folderRef.getFiles();
-    alert(fileList);
+    alert("2");
     $.ajaxSetup({ async: false });
     for (var i in fileList) {
         alert(fileList[i].name);
