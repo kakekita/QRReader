@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <title>JSON作成</title>
+    </head>
+    <body>
+        <input type="file" id="selfile"><br>
+        <script>
+            async function setup(list) {
+                var years = prompt("入学年を入力してください","");
+                /** 重複チェック用配列 */
+                var randoms = {};
+                /** 最小値と最大値 */
+                var min = 100000, max = 999999;
+                /** 重複チェックしながら乱数作成 */
+                for(var i = 0; i <= list.length;i++){
+                    console.log(list[i])
+                    if(list[i]) {
+                        while(true){
+                            var tmp = intRandom(min, max);
+                            if(!(tmp in randoms)){
+                                //randoms[list[i]] = years+String(tmp);
+                                randoms[years+String(tmp)] = list[i];
+                                break;
+                            }
+                        }
+                    }
+                }
+                console.log(randoms);
+                const blob = new Blob([JSON.stringify(randoms, null, '  ')], {type: 'application\/json'});
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                    link.href = url;
+                    link.download = years+'.json';
+                    link.click();
+                    URL.revokeObjectURL(url);
+                const sleep = ms => new Promise(res => setTimeout(res, ms))
+                var cnt = [5,4,3,2,1];
+                for(var i = 0; i < 5;i++) {
+                    document.title = String(cnt[i]);
+                    await sleep(1000);
+                }
+                window.location.reload(true);
+                
+            }
+            /** min以上max以下の整数値の乱数を返す */
+            function intRandom(min, max){
+                return Math.floor( Math.random() * (max - min + 1)) + min;
+            }
+            
+            var obj1 = document.getElementById("selfile");
+            
+            //ダイアログでファイルが選択された時
+            obj1.addEventListener("change",function(evt){
+                
+                var file = evt.target.files;
+                
+                //FileReaderの作成
+                var reader = new FileReader();
+                //テキスト形式で読み込む
+                reader.readAsText(file[0]);
+                
+                //読込終了後の処理
+                reader.onload = function(ev){
+                    //テキストエリアに表示する
+                    console.log(reader.result);
+                    setup(reader.result.replace(/\r/g,"").split(/\n/));
+                }
+            },false);
+        </script>
+    </body>
+</html>
