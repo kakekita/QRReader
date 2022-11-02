@@ -131,7 +131,7 @@
           console.log(numb)
           var name = getName(names,String(numb));
           if(!(name)) {
-            alert("未登録のユーザーです。");
+            console.log("未登録のユーザーです。");
           }else {
             alert(name+"です。");
           }
@@ -144,14 +144,14 @@
     }
     
     function getName(dicts,str) {
-        var allkey = Object.keys(dicts);//名前
         var dict = dicts[String(str.substr(0,4))];
-        console.log(str);
+        var allkey = Object.keys(dict);//名前
+        console.log(allkey);
         for(var i of allkey) {
-            console.log(dict[allkey[i]]));
-            if(String(dict[allkey[i]]) === String(str)) {
-                console.log(allkey[i])
-                return allkey[i];
+            console.log(dict[i]);
+            if(String(dict[i]) === String(str)) {
+                console.log(i)
+                return i;
             }
         }
         return false;
