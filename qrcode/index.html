@@ -24,12 +24,15 @@
             }
             span {
                 display: inline-block;
-                font-size: 30px;
+                font-size: 20px;
                 text-align: center;
-                vertical-align: top;
+                margin-top: 75px;
+                margin-bottom: 75px;
+                vertical-align: middle;
             }
             canvas {
                 margin-top: 26px;
+                margin-bottom: 26px;
             }
         </style>
     </head>
@@ -56,7 +59,7 @@
                 $('#qr').qrcode({text:encode(str),width: 128,height: 128});
                 var url = document.getElementById("qr").lastElementChild.toDataURL('image/png');
                 console.log(url);
-                document.getElementById("qr").insertAdjacentHTML('beforeend','<span style="width: 20px;height: 180px"></span>');
+                document.getElementById("qr").insertAdjacentHTML('beforeend','<span style="width: 20px;height: 30px"></span>');
                 if((k+1) % 3 == 0) {
                     document.getElementById("qr").insertAdjacentHTML('beforeend','<p></p>');
                 }
