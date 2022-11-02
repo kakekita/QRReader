@@ -16,7 +16,7 @@
             $.ajaxSetup({ async: true });
             var allkey = Object.key(names);
             for(var k in allkey) {
-                str = String(names[allkey[k]]);
+                var str = String(names[allkey[k]]);
                 $(function(){
                     $('#qr').qrcode(encode(str));
                 });
