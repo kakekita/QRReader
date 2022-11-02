@@ -75,6 +75,7 @@
     var fileList = folderRef.getFiles();
     $.ajaxSetup({ async: false });
     for (var i = 0;i < fileList.length;i++) {
+        alert(fileList[i].name)
         $.getJSON("students/"+fileList[i].name+".json").done(function (json) {
             names[String(fileList[i].name)] = json;
         });
