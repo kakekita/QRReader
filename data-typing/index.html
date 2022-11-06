@@ -170,6 +170,20 @@
         }
         return false;
     }
+    
+    function save(s) {
+      var db = firebase.firestore();
+      var dat = new Date();
+      const userRef = db.collection('month').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1)));
+      userRef.set({
+        score: s
+      });
+      const userRef = db.collection('month').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1)));
+      userRef.set({
+        score: s
+      });
+      console.log(s)
+    }
   </script>
 </body>
 </html>
