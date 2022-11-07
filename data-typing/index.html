@@ -173,21 +173,44 @@
         return false;
     }
     
-    function save(num,s) {
+    function save(num,s,mw,d) {
       var db = firebase.firestore();
-      var dat = new Date();
-      alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
-      var userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
+      //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
+      var userRef = db.collection(mw).doc(d);
       userRef.set({[num]: s});
-      userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
-      alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
-      userRef.set({[num]: s});
-      alert("完了しました。");
+      //userRef = db.collection('week').doc();
+      //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
+      //userRef.set({[num]: s});
     }
     function getWeeks(today) {
-      var weekdays = [ "日", "月", "火", "水", "木", "金", "土" ];
       var n = Math.floor((today.getDate() - today.getDay() + 12 ) / 7);
       return n;
+    }
+    
+    function maxCheck(num,s) {
+      var db = firebase.firestore();
+      var dat = new Date();
+      var md = dat.getFullYear()+String(parseInt(dat.getMonth()+1))
+      var postRef = db.collection("month").doc(md);
+      postRef.get().then(e => {
+        var d = e.data()[num];
+        console.log(d)
+        //alert(n+"/"+dat);
+        if (Number(d) < Number(n)) {
+           save(num,s,"month",md);
+        }
+      });
+      
+      var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
+      var postRef = db.collection("week").doc(wd);
+      postRef.get().then(e => {
+        var d = e.data()[num];
+        console.log(d)
+        //alert(n+"/"+dat);
+        if (Number(d) < Number(n)) {
+           save(num,s,"week",wd);
+        }
+      });
     }
   </script>
 </body>
