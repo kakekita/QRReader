@@ -194,22 +194,30 @@
       var md = dat.getFullYear()+String(parseInt(dat.getMonth()+1))
       var postRef = db.collection("month").doc(md);
       postRef.get().then(e => {
-        var d = e.data()[num];
+        var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
-        if (Number(d) < Number(s)) {
-           save(num,s,"month",md);
+        if(num in d) {
+          if (Number(d[num]) < Number(s)) {
+            save(num,s,"month",md);
+          }
+        }else {
+          save(num,s,"month",md);
         }
       });
       
       var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
       var postRef = db.collection("week").doc(wd);
       postRef.get().then(e => {
-        var d = e.data()[num];
+        var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
-        if (Number(d) < Number(s)) {
-           save(num,s,"week",wd);
+        if(num in d) {
+          if (Number(d[num]) < Number(s)) {
+            save(num,s,"week",md);
+          }
+        }else {
+          save(num,s,"week",md);
         }
       });
     }
