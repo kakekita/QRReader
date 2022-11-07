@@ -171,18 +171,21 @@
         return false;
     }
     
-    function save(s) {
+    function save(num,s) {
       var db = firebase.firestore();
       var dat = new Date();
       const userRef = db.collection('month').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1)));
-      userRef.set({
-        score: s
-      });
-      const userRef = db.collection('month').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1)));
-      userRef.set({
-        score: s
-      });
+      var dict = {};
+      dict[num] = s
+        
+      userRef.set(dict);
+      userRef = db.collection('week').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1))+String(getWeek(dat)));
+      userRef.set(dict);
       console.log(s)
+    }
+    function getWeeks(today) {
+      var weekdays = [ "日", "月", "火", "水", "木", "金", "土" ];
+      retrun Math.floor((today.getDate() - today.getDay() + 12 ) / 7);
     }
   </script>
 </body>
