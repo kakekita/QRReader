@@ -176,9 +176,11 @@
     function save(num,s) {
       var db = firebase.firestore();
       var dat = new Date();
+      alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       var userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       userRef.set({[num]: s});
       userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
+      alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
       userRef.set({[num]: s});
       alert("完了しました。");
     }
