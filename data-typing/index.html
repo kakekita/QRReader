@@ -88,7 +88,7 @@
     var year = new Date().getFullYear();
     $.ajaxSetup({ async: false });
     for (var i = 2020;i <= year;i++) {
-        $.getJSON("students/"+String(i)+".json").done(function (json) {
+        $.getJSON("../app/students/"+String(i)+".json").done(function (json) {
             names[String(i)] = json;
         });
     }
