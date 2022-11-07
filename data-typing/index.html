@@ -178,7 +178,7 @@
       //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       var userRef = db.collection(mw).doc(d);
       num = String(num)
-      userRef.set({[num]: s});
+      userRef.set({[num]: s}, { merge: true });
       //userRef = db.collection('week').doc();
       //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
       //userRef.set({[num]: s});
@@ -192,13 +192,17 @@
       var db = firebase.firestore();
       var dat = new Date();
       var md = dat.getFullYear()+String(parseInt(dat.getMonth()+1))
-      var postRef = db.collection("month").doc(md);
-      postRef.get().then(e => {
+      var postRef1 = db.collection("month").doc(md);
+      postRef1.get().then(e => {
         var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-          if (Number(d[num]) < Number(s)) {
+          if(num in d) {
+            if (Number(d[num]) < Number(s)) {
+              save(num,s,"month",md);
+            }
+          }else {
             save(num,s,"month",md);
           }
         }else {
@@ -207,17 +211,22 @@
       });
       
       var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
-      var postRef = db.collection("week").doc(wd);
-      postRef.get().then(e => {
+      console.log(wd)
+      var postRef2 = db.collection("week").doc(wd);
+      postRef2.get().then(e => {
         var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-          if (Number(d[num]) < Number(s)) {
-            save(num,s,"week",md);
+          if(num in d) {
+            if (Number(d[num]) < Number(s)) {
+              save(num,s,"week",wd);
+            }
+          }else {
+            save(num,s,"week",wd);
           }
         }else {
-          save(num,s,"week",md);
+          save(num,s,"week",wd);
         }
       });
     }

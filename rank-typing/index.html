@@ -1,4 +1,130 @@
 <!doctype html>
-<html>
+<html lang="ja">
+<head>
+<title>ランキング</title>
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<style>
+    table {
+      background-color: honeydew;
+      border-collapse: collapse;
+    }
+    table th {
+      background-color: palegreen;
+    }
+    table th, table td {
+      border: solid 1px #aaa;
+      padding:15px;
+    }
+</style>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js"></script>
+<script>
+var config = {
+    apiKey: "AIzaSyAGnTPOE0zCPQ08W-poMg0oIKeAyZae6QQ",
+    authDomain: "data-typing.firebaseapp.com",
+    projectId: "data-typing",
+    storageBucket: "data-typing.appspot.com",
+    messagingSenderId: "1051810006855",
+    appId: "1:1051810006855:web:8268125a377c836ff86e62"
+};
 
+firebase.initializeApp(config);
+</script>
+<script src="../app/number.js"></script>
+<script>
+    var names = {};
+    var year = new Date().getFullYear();
+    $.ajaxSetup({ async: false });
+    for (var i = 2020;i <= year;i++) {
+        $.getJSON("../app/students/"+String(i)+".json").done(function (json) {
+            names[String(i)] = json;
+        });
+    }
+    console.log(names);
+    $.ajaxSetup({ async: true });
+    
+    
+    function getScores() {
+      var db = firebase.firestore();
+      var dat = new Date();
+      var md = dat.getFullYear()+String(parseInt(dat.getMonth()+1))
+      var postRef1 = db.collection("month").doc(md);
+      postRef1.get().then(e => {
+        var d = e.data();
+        console.log(d)
+        //alert(n+"/"+dat);
+        if(d) {
+            document.body.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
+            var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
+            array.sort((a, b) => b.value - a.value);
+            createTable(array);
+        }
+      });
+      var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
+      var postRef2 = db.collection("week").doc(wd);
+      postRef2.get().then(e => {
+        var d = e.data();
+        console.log(d)
+        //alert(n+"/"+dat);
+        if(d) {
+            document.body.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
+            var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
+            array.sort((a, b) => b.value - a.value);
+            createTable(array);
+        }
+      });
+    }
+    
+    function getName(dicts,str) {
+        console.log(str);
+        var dict = dicts[String(str.substr(0,4))];
+        var allkey = Object.keys(dict);//名前
+        console.log(allkey);
+        for(var i of allkey) {
+            console.log(dict[i]);
+            if(String(dict[i]) === String(str)) {
+                console.log(i)
+                return i;
+            }
+        }
+        return false;
+    }
+    
+    function getWeeks(today) {
+      var n = Math.floor((today.getDate() - today.getDay() + 12 ) / 7);
+      return n;
+    }
+    
+    function createTable(dict) {
+        var mybody = document.getElementsByTagName("body")[0];
+        var mytable = document.createElement("table");
+        var mytbody = document.createElement("tbody");
+        for(var k in dict) {
+            var mytr = document.createElement("tr");
+            var myth = document.createElement("th");
+            var mytd1 = document.createElement("td");
+            var mytd2 = document.createElement("td");
+            myth.textContent = String(parseInt(k)+1)+"位";
+            var name = getName(names,String(dict[k]["key"]));
+            if(!(name)) {
+                mytd1.textContent = "-";
+                mytd2.textContent = "-";
+            } else {
+                mytd1.textContent = name;
+                mytd2.textContent = String(dict[k]["value"])+"点";
+            }
+            mytr.appendChild(myth);
+            mytr.appendChild(mytd1);
+            mytr.appendChild(mytd2);
+            mytbody.appendChild(mytr);
+        }
+        mytable.appendChild(mytbody);
+        mybody.appendChild(mytable);
+    }
+    getScores();
+</script>
+</body>
 </html>
