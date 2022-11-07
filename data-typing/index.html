@@ -180,7 +180,7 @@
       userRef.set({[num]: s});
       userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
       userRef.set({[num]: s});
-      console.log(s)
+      alert("完了しました。");
     }
     function getWeeks(today) {
       var weekdays = [ "日", "月", "火", "水", "木", "金", "土" ];
