@@ -147,7 +147,8 @@
           if(!(name)) {
             console.log("未登録のユーザーです。");
           }else {
-            alert(name+"です。");
+            var sc = prompt(name+"さんのスコアを入力してください","");
+            save(numb,parseInt(sc));
           }
         } else {
           outputMessage.hidden = false;
@@ -174,12 +175,12 @@
     function save(num,s) {
       var db = firebase.firestore();
       var dat = new Date();
-      const userRef = db.collection('month').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1)));
+      const userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       var dict = {};
       dict[num] = s
         
       userRef.set(dict);
-      userRef = db.collection('week').doc(dat.getFullYear()+String(paseInt(dat.getMonth()+1))+String(getWeek(dat)));
+      userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeek(dat)));
       userRef.set(dict);
       console.log(s)
     }
