@@ -177,6 +177,7 @@
       var db = firebase.firestore();
       //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       var userRef = db.collection(mw).doc(d);
+      num = String(num)
       userRef.set({[num]: s});
       //userRef = db.collection('week').doc();
       //alert(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
