@@ -180,7 +180,7 @@
       dict[num] = s
         
       userRef.set(dict);
-      userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeek(dat)));
+      userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
       userRef.set(dict);
       console.log(s)
     }
