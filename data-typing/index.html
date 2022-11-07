@@ -177,12 +177,9 @@
       var db = firebase.firestore();
       var dat = new Date();
       var userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
-      var dict = {};
-      dict[num] = s
-        
-      userRef.set(dict);
+      userRef.set({[num]: s});
       userRef = db.collection('week').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat)));
-      userRef.set(dict);
+      userRef.set({[num]: s});
       console.log(s)
     }
     function getWeeks(today) {
