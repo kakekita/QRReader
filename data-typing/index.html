@@ -176,7 +176,7 @@
     function save(num,s) {
       var db = firebase.firestore();
       var dat = new Date();
-      const userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
+      var userRef = db.collection('month').doc(dat.getFullYear()+String(parseInt(dat.getMonth()+1)));
       var dict = {};
       dict[num] = s
         
@@ -187,7 +187,8 @@
     }
     function getWeeks(today) {
       var weekdays = [ "日", "月", "火", "水", "木", "金", "土" ];
-      retrun Math.floor((today.getDate() - today.getDay() + 12 ) / 7);
+      var n = Math.floor((today.getDate() - today.getDay() + 12 ) / 7);
+      return n;
     }
   </script>
 </body>
