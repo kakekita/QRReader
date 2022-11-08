@@ -5,12 +5,19 @@
 <meta charset="utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
-    table {
+    .table1 {
       background-color: honeydew;
       border-collapse: collapse;
     }
-    table th {
+    .th1 {
       background-color: palegreen;
+    }
+    .table2 {
+      background-color: skyblue;
+      border-collapse: collapse;
+    }
+    .th2 {
+      background-color: deepskyblue;
     }
     table th, table td {
       border: solid 1px #aaa;
@@ -60,7 +67,7 @@ firebase.initializeApp(config);
             document.body.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
-            createTable(array);
+            createTable(array,"1");
         }
       });
       var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
@@ -73,7 +80,7 @@ firebase.initializeApp(config);
             document.body.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
-            createTable(array);
+            createTable(array,"2");
         }
       });
     }
@@ -98,13 +105,15 @@ firebase.initializeApp(config);
       return n;
     }
     
-    function createTable(dict) {
+    function createTable(dict,ni) {
         var mybody = document.getElementsByTagName("body")[0];
         var mytable = document.createElement("table");
+        mytable.classList.add("table"+ni);
         var mytbody = document.createElement("tbody");
         for(var k in dict) {
             var mytr = document.createElement("tr");
             var myth = document.createElement("th");
+            myth.classList.add("th"+ni);
             var mytd1 = document.createElement("td");
             var mytd2 = document.createElement("td");
             myth.textContent = String(parseInt(k)+1)+"位";
