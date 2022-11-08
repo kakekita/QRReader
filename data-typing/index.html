@@ -154,8 +154,10 @@
             var sc = prompt(name+"さんのスコアを入力してください","");
             var regex = /[^0-9]/g;
             var inp = str.replace(regex, "");
+            alert(inp);
+            alert(String(!inp));
             if(!inp) {
-            
+              
             }else {
               maxCheck(numb,parseInt(inp));
               outputData.innerHTML = "完了しました。";
