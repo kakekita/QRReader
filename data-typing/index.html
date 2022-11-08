@@ -85,6 +85,7 @@
     //var de = decode(en);
     //alert("start");
     //====end=====
+    var sleep = ms => new Promise(res => setTimeout(res, ms))
     var names = {};
     var year = new Date().getFullYear();
     $.ajaxSetup({ async: false });
@@ -120,7 +121,7 @@
       requestAnimationFrame(tick);
     });
 
-    function tick() {
+    async function tick() {
       loadingMessage.innerText = "読み込み中..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
@@ -148,6 +149,7 @@
           if(!(name)) {
             console.log("未登録のユーザーです。");
           }else {
+            await sleep(250);
             var sc = prompt(name+"さんのスコアを入力してください","");
             maxCheck(numb,parseInt(sc));
           }
