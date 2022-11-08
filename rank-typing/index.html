@@ -126,8 +126,10 @@ firebase.initializeApp(config);
             } else {
                 mytd1.textContent = name;
                 mytd2.textContent = String(dict[k]["value"])+"点";
-                if(String(dict[k]["value"]) === String(dict[parseInt(k)-1]["value"])) {
-                    myth.textContent = String(rank[parseInt(k)-1])+"位";
+                if(k > 0) {
+                    if(String(dict[k]["value"]) === String(dict[parseInt(k)-1]["value"])) {
+                        myth.textContent = String(rank[parseInt(k)-1])+"位";
+                    }
                 }
             }
             mytr.appendChild(myth);
