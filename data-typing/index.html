@@ -154,7 +154,7 @@
             var sc = prompt(name+"さんのスコアを入力してください","");
             var regex = /[^0-9]/g;
             var inp = str.replace(regex, "");
-            if(!(inp === "")&&!(inp === null)&&!(inp === NaN)) {
+            if(inp) {
               maxCheck(numb,parseInt(inp));
               outputData.innerHTML = "完了しました。";
               await sleep(1200);
