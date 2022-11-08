@@ -152,10 +152,14 @@
           }else {
             await sleep(250);
             var sc = prompt(name+"さんのスコアを入力してください","");
-            maxCheck(numb,parseInt(sc));
-            outputData.innerHTML = "完了しました。";
-            await sleep(1200);
-            outputData.innerHTML = "";
+            var regex = /[^0-9]/g;
+            var inp = str.replace(regex, "");
+            if(!(inp === "")&&!(inp === null)&&!(inp === NaN)) {
+              maxCheck(numb,parseInt(inp));
+              outputData.innerHTML = "完了しました。";
+              await sleep(1200);
+              outputData.innerHTML = "";
+            }
           }
         } else {
           outputMessage.hidden = false;
