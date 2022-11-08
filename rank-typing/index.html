@@ -128,7 +128,8 @@ firebase.initializeApp(config);
                 mytd2.textContent = String(dict[k]["value"])+"点";
                 if(k > 0) {
                     if(String(dict[k]["value"]) === String(dict[parseInt(k)-1]["value"])) {
-                        myth.textContent = String(rank[parseInt(k)-1])+"位";
+                        rank[k] = rank[parseInt(k)-1];
+                        myth.textContent = String(rank[k])+"位";
                     }
                 }
             }
