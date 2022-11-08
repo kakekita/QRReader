@@ -106,6 +106,7 @@ firebase.initializeApp(config);
     }
     
     function createTable(dict,ni) {
+        var rank = [];
         var mybody = document.getElementsByTagName("body")[0];
         var mytable = document.createElement("table");
         mytable.classList.add("table"+ni);
@@ -116,7 +117,8 @@ firebase.initializeApp(config);
             myth.classList.add("th"+ni);
             var mytd1 = document.createElement("td");
             var mytd2 = document.createElement("td");
-            myth.textContent = String(parseInt(k)+1)+"位";
+            rank.push(parseInt(k)+1);
+            myth.textContent = String(rank[k])+"位";
             var name = getName(names,String(dict[k]["key"]));
             if(!(name)) {
                 mytd1.textContent = "-";
@@ -124,6 +126,9 @@ firebase.initializeApp(config);
             } else {
                 mytd1.textContent = name;
                 mytd2.textContent = String(dict[k]["value"])+"点";
+                if(String(dict[k]["value"]) === String(dict[parseInt(k)-1]["value"])) {
+                    myth.textContent = String(rank[parseInt(k)-1])+"位";
+                }
             }
             mytr.appendChild(myth);
             mytr.appendChild(mytd1);
