@@ -153,7 +153,7 @@
             await sleep(250);
             var sc = prompt(name+"さんのスコアを入力してください","");
             var regex = /[^0-9]/g;
-            var inp = str.replace(regex, "");
+            var inp = sc.replace(regex, "");
             alert(inp);
             alert(String(!inp));
             if(!inp) {
