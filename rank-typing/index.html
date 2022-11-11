@@ -28,9 +28,9 @@
         display: flex;
     }
     
-    span {
-        font-size: 35px;
-        width: 40px;
+    div {
+        text-align: center;
+        flex-flow: column;
     }
 </style>
 </head>
@@ -73,11 +73,13 @@ firebase.initializeApp(config);
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<span>月間ランキング</span>');
+            document.body.insertAdjacentHTML('beforeend','<div id="div1"></div>');
+            var div1 = document.getElementById("div1");
+            div1.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"1");
-            document.body.insertAdjacentHTML('beforeend','<br>');
+            div1.insertAdjacentHTML('beforeend','<br>');
         }
       });
       var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
@@ -87,11 +89,13 @@ firebase.initializeApp(config);
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<span>週間ランキング</span>');
+            document.body.insertAdjacentHTML('beforeend','<div id="div2"></div>');
+            var div2 = document.getElementById("div2");
+            div2.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"2");
-            document.body.insertAdjacentHTML('beforeend','<br>');
+            div2.insertAdjacentHTML('beforeend','<br>');
         }
       });
     }
@@ -118,7 +122,7 @@ firebase.initializeApp(config);
     
     function createTable(dict,ni) {
         var rank = [];
-        var mybody = document.getElementsByTagName("body")[0];
+        var mybody = document.getElementById("div"+ni);
         var mytable = document.createElement("table");
         mytable.classList.add("table"+ni);
         var mytbody = document.createElement("tbody");
