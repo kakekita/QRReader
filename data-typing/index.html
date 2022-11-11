@@ -239,6 +239,25 @@
           save(num,s,"week",wd);
         }
       });
+      var dd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(dat.getDate());
+      console.log(dd)
+      var postRef3 = db.collection("day").doc(dd);
+      postRef3.get().then(e => {
+        var d = e.data();
+        console.log(d)
+        //alert(n+"/"+dat);
+        if(d) {
+          if(num in d) {
+            if (Number(d[num]) < Number(s)) {
+              save(num,s,"day",dd);
+            }
+          }else {
+            save(num,s,"day",dd);
+          }
+        }else {
+          save(num,s,"day",dd);
+        }
+      });
     }
   </script>
 </body>
