@@ -77,6 +77,7 @@ firebase.initializeApp(config);
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"1");
+            document.body.insertAdjacentHTML('beforeend','<br>');
         }
       });
       var wd = dat.getFullYear()+String(parseInt(dat.getMonth()+1))+String(getWeeks(dat));
@@ -90,6 +91,7 @@ firebase.initializeApp(config);
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"2");
+            document.body.insertAdjacentHTML('beforeend','<br>');
         }
       });
     }
