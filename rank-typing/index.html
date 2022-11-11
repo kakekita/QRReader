@@ -27,6 +27,11 @@
     body {
         display: flex;
     }
+    
+    span {
+        font-size: 60px;
+        white-space: nowrap;
+    }
 </style>
 </head>
 <body>
@@ -68,7 +73,7 @@ firebase.initializeApp(config);
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
+            document.body.insertAdjacentHTML('beforeend','<span>月間ランキング</span>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"1");
@@ -81,7 +86,7 @@ firebase.initializeApp(config);
         console.log(d)
         //alert(n+"/"+dat);
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
+            document.body.insertAdjacentHTML('beforeend','<span>週間ランキング</span>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"2");
