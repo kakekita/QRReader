@@ -116,12 +116,12 @@ firebase.initializeApp(config);
         //alert(n+"/"+dat);
         if(d) {
             document.body.insertAdjacentHTML('beforeend','<div id="div3"></div>');
-            var div2 = document.getElementById("div3");
-            div2.insertAdjacentHTML('beforeend','<h2>毎日ランキング</h2>');
+            var div3 = document.getElementById("div3");
+            div3.insertAdjacentHTML('beforeend','<h2>毎日ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"3");
-            div2.insertAdjacentHTML('beforeend','<br>');
+            div3.insertAdjacentHTML('beforeend','<br>');
         }
       });
     }
