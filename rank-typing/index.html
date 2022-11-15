@@ -82,10 +82,10 @@ firebase.initializeApp(config);
         var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
+        document.body.insertAdjacentHTML('beforeend','<div id="div1"></div>');
+        var div1 = document.getElementById("div1");
+        div1.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<div id="div1"></div>');
-            var div1 = document.getElementById("div1");
-            div1.insertAdjacentHTML('beforeend','<h2>月間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"1");
@@ -98,10 +98,10 @@ firebase.initializeApp(config);
         var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
+        document.body.insertAdjacentHTML('beforeend','<div id="div2"></div>');
+        var div2 = document.getElementById("div2");
+        div2.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<div id="div2"></div>');
-            var div2 = document.getElementById("div2");
-            div2.insertAdjacentHTML('beforeend','<h2>週間ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"2");
@@ -114,10 +114,10 @@ firebase.initializeApp(config);
         var d = e.data();
         console.log(d)
         //alert(n+"/"+dat);
+        document.body.insertAdjacentHTML('beforeend','<div id="div3"></div>');
+        var div3 = document.getElementById("div3");
+        div3.insertAdjacentHTML('beforeend','<h2>毎日ランキング</h2>');
         if(d) {
-            document.body.insertAdjacentHTML('beforeend','<div id="div3"></div>');
-            var div3 = document.getElementById("div3");
-            div3.insertAdjacentHTML('beforeend','<h2>毎日ランキング</h2>');
             var array = Object.keys(d).map((k)=>({ key: k, value: Number(d[k]) }));
             array.sort((a, b) => b.value - a.value);
             createTable(array,"3");
