@@ -152,7 +152,11 @@ firebase.initializeApp(config);
         var mytable = document.createElement("table");
         mytable.classList.add("table"+ni);
         var mytbody = document.createElement("tbody");
+        var count = 0;
         for(var k in dict) {
+            if(count >= 300) {
+                break;
+            }
             var mytr = document.createElement("tr");
             var myth = document.createElement("th");
             myth.classList.add("th"+ni);
@@ -178,6 +182,7 @@ firebase.initializeApp(config);
             mytr.appendChild(mytd1);
             mytr.appendChild(mytd2);
             mytbody.appendChild(mytr);
+            count++;
         }
         mytable.appendChild(mytbody);
         mybody.appendChild(mytable);
