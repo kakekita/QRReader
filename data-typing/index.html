@@ -86,9 +86,16 @@
     //var de = decode(en);
     //alert("start");
     //====end=====
+    
+    function parseCsv(data) {
+      // CSVを配列で読み込む
+      var csv = $.csv.toArrays(data);
+      return csv;
+    }
+    
     var sleep = ms => new Promise(res => setTimeout(res, ms))
-    var names = {};
-    var year = new Date().getFullYear();
+    var names = null;
+    /*var year = new Date().getFullYear();
     $.ajaxSetup({ async: false });
     for (var i = 2020;i <= year;i++) {
         $.getJSON("../app/students/"+String(i)+".json").done(function (json) {
@@ -96,7 +103,7 @@
         });
     }
     console.log(names);
-    $.ajaxSetup({ async: true });
+    $.ajaxSetup({ async: true });*/
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
@@ -114,23 +121,7 @@
       canvas.stroke();
     }
     
-    function parseCsv(data) {
-      // CSVを配列で読み込む
-      var csv = $.csv.toArrays(data);
-      var insert = '';
-      $(csv).each(function(i) {
-        if (this.length > 0) {
-          insert += '<tr>';
-          $(this).each(function() {
-              insert += '<td>' + this + '</td>';
-          });
-          insert += '</tr>';
-        }
-        var target = (i === 0) ? "thead" : "tbody";
-        $("#result "+target).append(insert);
-        insert = "";
-      });
-    }
+    
 
     // Use facingMode: environment to attemt to get the front camera on phones
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
@@ -164,7 +155,10 @@
           outputData.innerText = "読み込み完了";
           //code.data → 取得した情報
           var numb = decode(window.atob(code.data));
-          console.log(numb)
+          console.log(numb);
+          var ns = numbs.toString().split("");
+          names = $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
+          alert(names.toString());
           var name = getName(names,String(numb));
           if(!(name)) {
             console.log("未登録のユーザーです。");
