@@ -5,6 +5,7 @@
   <title>北中タイピング集計</title>
   <script src="./jsQR.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
   <style>
     body {
@@ -111,6 +112,24 @@
       canvas.lineWidth = 4;
       canvas.strokeStyle = color;
       canvas.stroke();
+    }
+    
+    function parseCsv(data) {
+      // CSVを配列で読み込む
+      var csv = $.csv.toArrays(data);
+      var insert = '';
+      $(csv).each(function(i) {
+        if (this.length > 0) {
+          insert += '<tr>';
+          $(this).each(function() {
+              insert += '<td>' + this + '</td>';
+          });
+          insert += '</tr>';
+        }
+        var target = (i === 0) ? "thead" : "tbody";
+        $("#result "+target).append(insert);
+        insert = "";
+      });
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
