@@ -4,6 +4,7 @@
 <title>ランキング</title>
 <meta charset="utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
 <style>
     .table1 {
       background-color: honeydew;
@@ -61,9 +62,9 @@ firebase.initializeApp(config);
 </script>
 <script src="../app/number.js"></script>
 <script>
-    var names = {};
+    var names = null;
     var year = new Date().getFullYear();
-    $.ajaxSetup({ async: false });
+    /*$.ajaxSetup({ async: false });
     for (var i = 2020;i <= year;i++) {
         $.getJSON("../app/students/"+String(i)+".json").done(function (json) {
             names[String(i)] = json;
@@ -71,6 +72,12 @@ firebase.initializeApp(config);
     }
     console.log(names);
     $.ajaxSetup({ async: true });
+    */
+    function parseCsv(data) {
+      // CSVを配列で読み込む
+      names = $.csv.toArrays(data);
+    }
+    
     
     
     function getScores() {
@@ -126,7 +133,7 @@ firebase.initializeApp(config);
       });
     }
     
-    function getName(dicts,str) {
+    /*function getName(dicts,str) {
         console.log(str);
         var dict = dicts[String(str.substr(0,4))];
         var allkey = Object.keys(dict);//名前
@@ -136,6 +143,16 @@ firebase.initializeApp(config);
             if(String(dict[i]) === String(str)) {
                 console.log(i)
                 return i;
+            }
+        }
+        return false;
+    }*/
+    
+    function getName(dicts,str) {
+        for(var i = 0;i < dicts.length;i++) {
+            if(parseInt(dicts[i][0]) == parseInt(str.substring(2,4))) {
+              //alert(dicts[parseInt(i*2+1)]);
+              return String(dicts[i][1]);
             }
         }
         return false;
