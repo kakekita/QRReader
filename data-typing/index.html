@@ -155,13 +155,12 @@
           //code.data → 取得した情報
           //var numb = decode(window.atob(code.data));
           var numb = parseInt(code.data);
-          alert(numb);
           var ns = String(numb).split("");
           $.ajaxSetup({ async: false });
           $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
           $.ajaxSetup({ async: true });
-          alert(names.toString());
           var name = getName(names,String(numb));
+          alert(name);
           if(!(name)) {
             console.log("未登録のユーザーです。");
           }else {
@@ -185,9 +184,10 @@
     }
     
     function getName(dicts,str) {
+        alert(parseInt(str.substring(2,4)));
         for(var i = 0;i < dicts.length/2;i++) {
             if(parseInt(dicts[parseInt(i*2)]) == parseInt(str.substring(2,4))) {
-              alert(dicts[parseInt(i*2+1)]);
+              //alert(dicts[parseInt(i*2+1)]);
               return String(dicts[parseInt(i*2+1)]);
             }
         }
