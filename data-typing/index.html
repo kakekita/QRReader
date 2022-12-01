@@ -89,13 +89,8 @@
     
     function parseCsv(data) {
       // CSVを配列で読み込む
-      var a = $.csv.toArrays(data);
-      alert(a.toString());
-      return a;
+      names = $.csv.toArrays(data);
     }
-    
-    var tests = $.get('../app/students/1/1.csv', parseCsv, 'text');
-    alert(tests);
     
     var sleep = ms => new Promise(res => setTimeout(res, ms))
     var names = null;
@@ -158,12 +153,12 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = "読み込み完了";
           //code.data → 取得した情報
-          var numb = decode(window.atob(code.data));
+          //var numb = decode(window.atob(code.data));
+          var numb = code.data;
           console.log(numb);
           var ns = numbs.toString().split("");
-          names = $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
-          alert(names.toString());
-          var name = getName(names,String(numb));
+          $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
+          var name = getName(names,String(parseInt(numb)));
           if(!(name)) {
             console.log("未登録のユーザーです。");
           }else {
@@ -187,14 +182,9 @@
     }
     
     function getName(dicts,str) {
-        var dict = dicts[String(str.substr(0,4))];
-        var allkey = Object.keys(dict);//名前
-        console.log(allkey);
-        for(var i of allkey) {
-            console.log(dict[i]);
-            if(String(dict[i]) === String(str)) {
-                console.log(i)
-                return i;
+        for(var i = 0;i < dicts.length/2;i++) {
+            if(String(dicts[parseInt(i*2)]) === String(str.substring(2,4))) {
+                return dicts[parseInt(i*2+1)];
             }
         }
         return false;
