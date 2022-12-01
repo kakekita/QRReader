@@ -87,13 +87,13 @@
     //alert("start");
     //====end=====
     
+    var sleep = ms => new Promise(res => setTimeout(res, ms))
+    var names = null;
+    
     function parseCsv(data) {
       // CSVを配列で読み込む
       names = $.csv.toArrays(data);
     }
-    
-    var sleep = ms => new Promise(res => setTimeout(res, ms))
-    var names = null;
     /*var year = new Date().getFullYear();
     $.ajaxSetup({ async: false });
     for (var i = 2020;i <= year;i++) {
@@ -156,9 +156,9 @@
           //var numb = decode(window.atob(code.data));
           var numb = code.data;
           console.log(numb);
-          var ns = numbs.toString().split("");
+          var ns = String(numb).split("");
           $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
-          var name = getName(names,String(parseInt(numb)));
+          var name = getName(names,String(numb));
           if(!(name)) {
             console.log("未登録のユーザーです。");
           }else {
