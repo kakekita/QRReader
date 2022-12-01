@@ -89,8 +89,8 @@
     
     function parseCsv(data) {
       // CSVを配列で読み込む
-      var csv = $.csv.toArrays(data);
-      return csv;
+      var a = $.csv.toArrays(data);
+      return a;
     }
     
     var tests = $.get('../app/students/1/1.csv', parseCsv, 'text');
