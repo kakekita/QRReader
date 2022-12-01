@@ -184,12 +184,10 @@
     }
     
     function getName(dicts,str) {
-        alert(parseInt(str.substring(2,4)) + ", " + dicts[parseInt(5*2)]);
-        alert(dicts.length/2);
-        for(var i = 0;i < dicts.length/2;i++) {
-            if(parseInt(dicts[parseInt(i*2)]) == parseInt(str.substring(2,4))) {
+        for(var i = 0;i < dicts.length;i++) {
+            if(parseInt(dicts[i][0]) == parseInt(str.substring(2,4))) {
               //alert(dicts[parseInt(i*2+1)]);
-              return String(dicts[parseInt(i*2+1)]);
+              return String(dicts[i][1]);
             }
         }
         return false;
