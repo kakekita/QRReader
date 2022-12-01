@@ -184,8 +184,8 @@
     }
     
     function getName(dicts,str) {
-        alert(parseInt(str.substring(2,4)));
-        alert(parseInt(dicts[parseInt(4*2)]));
+        alert(typeof parseInt(str.substring(2,4)));
+        alert(typeof parseInt(dicts[parseInt(4*2)]));
         alert(dicts.length/2);
         for(var i = 0;i < dicts.length/2;i++) {
             if(parseInt(dicts[parseInt(i*2)]) == parseInt(str.substring(2,4))) {
