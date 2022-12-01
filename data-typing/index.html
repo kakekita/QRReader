@@ -154,10 +154,13 @@
           outputData.innerText = "読み込み完了";
           //code.data → 取得した情報
           //var numb = decode(window.atob(code.data));
-          var numb = code.data;
-          console.log(numb);
+          var numb = parseInt(code.data);
+          alert(numb);
           var ns = String(numb).split("");
+          $.ajaxSetup({ async: false });
           $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
+          $.ajaxSetup({ async: true });
+          alert(names.toString());
           var name = getName(names,String(numb));
           if(!(name)) {
             console.log("未登録のユーザーです。");
