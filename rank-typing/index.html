@@ -184,7 +184,10 @@ firebase.initializeApp(config);
             var mytd2 = document.createElement("td");
             rank.push(parseInt(k)+1);
             myth.textContent = String(rank[k])+"位";
-            alert(String(dict[k]["key"]));
+            var ns = String(dict[k]["key"]).split("");
+            $.ajaxSetup({ async: false });
+            $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
+            $.ajaxSetup({ async: true });
             var name = getName(names,String(dict[k]["key"]));
             if(!(name)) {
                 mytd1.textContent = "-";
