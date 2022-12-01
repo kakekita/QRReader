@@ -93,6 +93,9 @@
       return csv;
     }
     
+    var tests = $.get('../app/students/1/1.csv', parseCsv, 'text');
+    alert(tests.toString());
+    
     var sleep = ms => new Promise(res => setTimeout(res, ms))
     var names = null;
     /*var year = new Date().getFullYear();
