@@ -165,7 +165,7 @@
             console.log("未登録のユーザーです。");
           }else {
             await sleep(250);
-            var sc = prompt(name+"さんのスコアを入力してください","");
+            var sc = prompt(name+"さんの「入力文字数」を入力してください","");
             var regex = /[^0-9]/g;
             var inp = String(sc).replace(regex, "");
             if(inp) {
