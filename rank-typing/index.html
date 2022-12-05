@@ -194,7 +194,7 @@ firebase.initializeApp(config);
                 mytd2.textContent = "-";
             } else {
                 mytd1.textContent = name;
-                mytd2.textContent = String(dict[k]["value"])+"点";
+                mytd2.textContent = String(dict[k]["value"])+"文字";
                 if(k > 0) {
                     if(String(dict[k]["value"]) === String(dict[parseInt(k)-1]["value"])) {
                         rank[k] = rank[parseInt(k)-1];
