@@ -166,7 +166,16 @@
               console.log("未登録のユーザーです。");
             }else {
               await sleep(250);
-              var sc = prompt(name+"さんの「入力文字数」を入力してください","");
+              while(true) {
+                var sc = prompt(name+"さんの「入力文字数」を入力してください","");
+                var regex = /[^0-9]/g;
+                var inp = String(sc).replace(regex, "");
+                if(parseInt(inp) <= 300) {
+                  break;
+                }else {
+                  alert("無効なスコアです");
+                }
+              }
               var regex = /[^0-9]/g;
               var inp = String(sc).replace(regex, "");
               if(inp) {
