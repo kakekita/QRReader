@@ -168,6 +168,9 @@
               await sleep(250);
               while(true) {
                 var sc = prompt(name+"さんの「入力文字数」を入力してください","");
+                if(sc == null) {
+                  break;
+                }
                 var regex = /[^0-9]/g;
                 var inp = String(sc).replace(regex, "");
                 if(parseInt(inp) <= 300) {
