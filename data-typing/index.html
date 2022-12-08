@@ -155,6 +155,9 @@
           //code.data → 取得した情報
           //var numb = decode(window.atob(code.data));
           var numb = parseInt(code.data);
+          if(isNaN(numb)) {
+            alert(numb);
+          }
           var ns = String(numb).split("");
           $.ajaxSetup({ async: false });
           $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
