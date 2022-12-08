@@ -174,7 +174,7 @@ firebase.initializeApp(config);
         var mytbody = document.createElement("tbody");
         var count = 0;
         for(var k in dict) {
-            if(count >= 150) {
+            if(count > 150) {
                 break;
             }
             var mytr = document.createElement("tr");
