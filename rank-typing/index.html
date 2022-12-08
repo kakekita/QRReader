@@ -202,11 +202,13 @@ firebase.initializeApp(config);
                     }
                 }
             }
-            mytr.appendChild(myth);
-            mytr.appendChild(mytd1);
-            mytr.appendChild(mytd2);
-            mytbody.appendChild(mytr);
-            count++;
+            if(parseInt(dict[k]["value"]) < 1000) {
+                mytr.appendChild(myth);
+                mytr.appendChild(mytd1);
+                mytr.appendChild(mytd2);
+                mytbody.appendChild(mytr);
+                count++;
+            }
         }
         mytable.appendChild(mytbody);
         mybody.appendChild(mytable);
