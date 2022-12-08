@@ -155,27 +155,26 @@
           //code.data → 取得した情報
           //var numb = decode(window.atob(code.data));
           var numb = parseInt(code.data);
-          if(isNaN(numb)) {
-            return false;
-          }
-          var ns = String(numb).split("");
-          $.ajaxSetup({ async: false });
-          $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
-          $.ajaxSetup({ async: true });
-          var name = getName(names,String(numb));
-          alert(name);
-          if(!(name)) {
-            console.log("未登録のユーザーです。");
-          }else {
-            await sleep(250);
-            var sc = prompt(name+"さんの「入力文字数」を入力してください","");
-            var regex = /[^0-9]/g;
-            var inp = String(sc).replace(regex, "");
-            if(inp) {
-              maxCheck(numb,parseInt(inp));
-              outputData.innerHTML = "完了しました。";
-              await sleep(1200);
-              outputData.innerHTML = "";
+          if(!isNaN(numb)) {
+            var ns = String(numb).split("");
+            $.ajaxSetup({ async: false });
+            $.get('../app/students/'+ns[0]+'/'+ns[1]+'.csv', parseCsv, 'text');
+            $.ajaxSetup({ async: true });
+            var name = getName(names,String(numb));
+            alert(name);
+            if(!(name)) {
+              console.log("未登録のユーザーです。");
+            }else {
+              await sleep(250);
+              var sc = prompt(name+"さんの「入力文字数」を入力してください","");
+              var regex = /[^0-9]/g;
+              var inp = String(sc).replace(regex, "");
+              if(inp) {
+                maxCheck(numb,parseInt(inp));
+                outputData.innerHTML = "完了しました。";
+                await sleep(1200);
+                outputData.innerHTML = "";
+              }
             }
           }
         } else {
